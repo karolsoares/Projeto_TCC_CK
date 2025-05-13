@@ -45,21 +45,21 @@ def selecionar_pasta_saida():
     return caminho_pasta
 
 # Seleção do arquivo de entrada
-#input_file = selecionar_arquivo()
-#if not os.path.isfile(input_file):
-#    print("Erro: arquivo não encontrado. Verifique o caminho digitado.")
-#    exit(1)
-#
+input_file = selecionar_arquivo()
+if not os.path.isfile(input_file):
+    print("Erro: arquivo não encontrado. Verifique o caminho digitado.")
+    exit(1)
+
 ## Seleção do diretório de saída
-#output_dir_sel = selecionar_pasta_saida()
-#if not os.path.isdir(output_dir_sel):
-#    print("Diretório não encontrado. Criando diretório...")
-#    try:
-#        os.makedirs(output_dir_sel)
-#        print(f"Diretório criado: {output_dir_sel}")
-#    except Exception as e:
-#        print(f"Erro ao criar diretório: {e}")
-#        exit(1)
+output_dir_sel = selecionar_pasta_saida()
+if not os.path.isdir(output_dir_sel):
+    print("Diretório não encontrado. Criando diretório...")
+    try:
+        os.makedirs(output_dir_sel)
+        print(f"Diretório criado: {output_dir_sel}")
+    except Exception as e:
+        print(f"Erro ao criar diretório: {e}")
+        exit(1)
 
 # Inicializa a classe Separator
 separator = Separator()
@@ -69,12 +69,11 @@ separator.load_model()
 
 # Executa a separação com o diretório de saída especificado
 #output_files = separator.separate("/audio/exemplos/audio_example.mp3", output_dir=output_dir_sel)
-output_dir = "Projeto_TCC_CK/audio/audios_separados/"
 output_names  =  { 
     "Vocais" :  "saída_vocais" , 
     "Instrumental" :  "saída_instrumental" , 
 } 
-output_files = separator.separate("Projeto_TCC_CK/audio/exemplos/audio_example.mp3", output_names)#tentar colocar o diretório de saida
+output_files = separator.separate(input_file, output_names)#tentar colocar o diretório de saida
 #print(f"Separação concluída! Arquivos gerados:")
 #for f in output_files:
 #    print(f" - {f}")
