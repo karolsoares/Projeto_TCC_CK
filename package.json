@@ -1,0 +1,15 @@
+{
+  "name": "ck-processamento-de-audio",
+  "version": "1.0.0",
+  "decription": "Projeto de TCC, Carlos & Karol",
+  "main": "frontend/js/main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Carlos Eduardo dos Santos",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^36.2.1"
+  }
+}
