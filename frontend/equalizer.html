@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CK - Equalizador de Áudio</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <h1 class="title">CK - Equalizador de Áudio</h1>
+
+  <button id="btnSelecionar" class="btn">Selecionar arquivo WAV</button>
+  <button id="btnVoltar" class="btn">Voltar ao Menu</button>
+
+  <div id="sliders" class="sliders-container">
+    <h3>Ajuste as bandas de ganho (dB):</h3>
+
+    <div class="slider-container">
+      <label for="band1">Banda 1 (32 Hz): <span id="val1">0</span> dB</label>
+      <input type="range" id="band1" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band2">Banda 2 (64 Hz): <span id="val2">0</span> dB</label>
+      <input type="range" id="band2" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band3">Banda 3 (125 Hz): <span id="val3">0</span> dB</label>
+      <input type="range" id="band3" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band4">Banda 4 (250 Hz): <span id="val4">0</span> dB</label>
+      <input type="range" id="band4" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band5">Banda 5 (500 Hz): <span id="val5">0</span> dB</label>
+      <input type="range" id="band5" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band6">Banda 6 (1 kHz): <span id="val6">0</span> dB</label>
+      <input type="range" id="band6" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band7">Banda 7 (2 kHz): <span id="val7">0</span> dB</label>
+      <input type="range" id="band7" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band8">Banda 8 (4 kHz): <span id="val8">0</span> dB</label>
+      <input type="range" id="band8" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band9">Banda 9 (8 kHz): <span id="val9">0</span> dB</label>
+      <input type="range" id="band9" min="-12" max="12" value="0" step="0.5" />
+    </div>
+
+    <div class="slider-container">
+      <label for="band10">Banda 10 (16 kHz): <span id="val10">0</span> dB</label>
+      <input type="range" id="band10" min="-12" max="12" value="0" step="0.5" />
+    </div>
+  </div>
+
+  <button id="btnProcessar" class="btn">Aplicar Equalização</button>
+
+  <div id="status" class="status"></div>
+
+  <script src="./js/renderer_equalizer.js"></script>
+</body>
+</html>
