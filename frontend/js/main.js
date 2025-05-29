@@ -15,7 +15,7 @@ function createWindow() {
   });
 
   // Carrega o arquivo menu.html que está uma pasta acima da pasta js
-  win.loadFile(path.join(__dirname, '..', 'menu.html'));
+  win.loadFile(path.join(__dirname, '..', 'login.html'));
 }
 
 app.whenReady().then(createWindow);

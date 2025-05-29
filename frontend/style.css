@@ -81,3 +81,30 @@ button:active {
 #status a:hover {
   text-decoration: underline;
 }
+
+.input-estilizado {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #888;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 5px;
+  width: 100%;
+  margin-bottom: 20px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-estilizado::placeholder {
+  color: #aaa;
+  transition: opacity 0.2s ease;
+}
+
+.input-estilizado:focus::placeholder {
+  opacity: 0; /* Esconde o placeholder ao focar */
+}
+
+.input-estilizado:focus {
+  border-bottom: 2px solid rgba(241, 73, 2, 0.5); /* Cor de destaque */
+  box-shadow: 0 2px 5px rgba(241, 73, 2, 0.5); /* Destaque sutil */
+}
