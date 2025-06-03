@@ -1,5 +1,5 @@
-import { initializeApp } from 'firebase/app';
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -13,16 +13,17 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 
-const auth = getAuth();
+//const auth = getAuth();
 
-createUserWithEmailAndPassword(auth, email, password)
-  .then((userCredential) => {
-    // Signed up 
-    const user = userCredential.user;
-    // ...
-  })
-  .catch((error) => {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    // ..
-  });
+//createUserWithEmailAndPassword(auth, email, password)
+//  .then((userCredential) => {
+//    const user = userCredential.user;
+//    message.textContent = "Usuário cadastrado com sucesso!";
+//    message.style.color = "green";
+//    console.log("Usuário:", user);
+//  })
+//  .catch((error) => {
+//    message.textContent = `Erro: ${error.message}`;
+//    message.style.color = "red";
+//    console.error("Erro:", error.code, error.message);
+//  });

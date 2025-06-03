@@ -6,16 +6,21 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-  <div class="container">
+
+  <form class="container">
     <h1>Cadastro de Usuário</h1>
 
     <!-- Campos de entrada com estilo aplicado -->
-    <input type="text" class="input-estilizado" id="usuario" name="usuario" placeholder="E-mail" />
+    <input type="text" class="input-estilizado" id="email" name="email" placeholder="E-mail" />
     <input type="password" class="input-estilizado" id="senha" name="senha" placeholder="Senha" />
 
     <button id="btnCadastrar">Cadastrar</button>
     <button id="btnVoltar">Voltar</button>
-  </div>
+  </form>
+  
+  <p id="message"></p>
+  
+  <script src="./js/firebase.js"></script>
   <script type="module" src="./js/cadastrarUsuario.js"></script>
 </body>
 </html>
