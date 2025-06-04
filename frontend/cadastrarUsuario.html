@@ -6,21 +6,17 @@
   <link rel="stylesheet" href="./style.css" />
 </head>
 <body>
-
-  <form class="container">
+  <div class="container">
     <h1>Cadastro de Usuário</h1>
-
-    <!-- Campos de entrada com estilo aplicado -->
     <input type="text" class="input-estilizado" id="email" name="email" placeholder="E-mail" />
     <input type="password" class="input-estilizado" id="senha" name="senha" placeholder="Senha" />
-
     <button id="btnCadastrar">Cadastrar</button>
     <button id="btnVoltar">Voltar</button>
-  </form>
-  
+  </div>
+
   <p id="message"></p>
-  
-  <script src="./js/firebase.js"></script>
+
+  <!-- Script principal: apenas este importa os módulos -->
   <script type="module" src="./js/cadastrarUsuario.js"></script>
 </body>
 </html>
