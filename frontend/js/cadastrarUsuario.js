@@ -10,7 +10,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (btnCadastrar) {
     btnCadastrar.addEventListener("click", async () => {
-      console.log("Botão Cadastrar clicado"); // 👈 Adicione isto!
       const email = emailInput.value;
       const password = passwordInput.value;
 
@@ -20,7 +19,6 @@ document.addEventListener("DOMContentLoaded", () => {
       } catch (error) {
         console.error(error);
         mensagem.textContent = `Erro ao cadastrar: ${error.message}`;
-        mensagem.style.color = "red";
       }
     });
   }
