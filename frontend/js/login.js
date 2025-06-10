@@ -19,7 +19,6 @@ document.addEventListener('DOMContentLoaded', () => {
       } catch (error) {
         console.error(error);
         mensagem.textContent = `Erro ao Logar Usuário: ${error.message}`;
-        mensagem.style.color = "red";
       }
     });
   }
