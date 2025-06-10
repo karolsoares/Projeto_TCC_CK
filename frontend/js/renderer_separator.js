@@ -17,7 +17,7 @@ btnSelecionar.addEventListener('click', async () => {
     return;
   }
 
-  mostrarStatus('Processando áudio, aguarde... TESTE');
+  mostrarStatus('Processando áudio, aguarde...');
 
   try {
     const saidas = await window.electronAPI.aplicarSeparacao(caminho); // agora retorna um array
