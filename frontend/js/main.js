@@ -110,4 +110,3 @@ ipcMain.handle('CK/separator', async (_, caminhoEntrada) => {
     });
   });
 });
-

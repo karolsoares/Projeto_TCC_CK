@@ -30,13 +30,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       window.location.href = 'equalizer.html';
     });
   }
-
   if (btnSeparator) {
     btnSeparator.addEventListener('click', () => {
       // Navega para a página de equalização
       window.location.href = 'separator.html';
     });
   }
-
 });
 

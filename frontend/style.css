@@ -1,0 +1,130 @@
+/* style.css */
+
+/* Reset básico e corpo */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #303030;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Container comum para centralizar e dar estilo ao conteúdo */
+.container {
+  background-color: #383838;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(241, 73, 2, 0.6);
+  width: 350px;
+  text-align: center;
+  margin: auto;
+
+  /* Para alinhar itens verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Container comum para centralizar e dar estilo ao conteúdo */
+.logout {
+  border-radius: 12px;
+  width: 100px;
+  text-align: center;
+
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: self-start;
+}
+
+#logout {
+  padding: 5px 0;  /*altura reduzida em relação ao botão padrão */
+  font-size: 1rem;  /*opcional: letra um pouco menor, se quiser */
+}
+
+/* Títulos */
+h1 {
+  color: #f14902;
+  margin-bottom: 40px;
+  user-select: none;
+}
+
+/* Botões padrão */
+button {
+  background-color: #f14902;
+  border: none;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(241, 73, 2, 0.5);
+  transition: background-color 0.25s ease;
+  user-select: none;
+  margin-bottom: 15px;
+}
+
+/* Efeito hover nos botões */
+button:hover {
+  background-color: #d03a00;
+  box-shadow: 0 6px 18px rgba(208, 58, 0, 0.8);
+}
+
+/* Efeito ao clicar no botão */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Status - mensagem abaixo do botão */
+#status {
+  margin-top: 10px;
+  min-height: 1.2rem;
+  font-size: 1rem;
+  color: #ddd;
+  word-wrap: break-word;
+}
+
+/* Link dentro do status */
+#status a {
+  color: #f14902;
+  text-decoration: none;
+}
+
+#status a:hover {
+  text-decoration: underline;
+}
+
+.input-estilizado {
+  background-color: transparent;
+  border: none;
+  border-bottom: 2px solid #888;
+  color: #fff;
+  font-size: 16px;
+  padding: 10px 5px;
+  width: 100%;
+  margin-bottom: 20px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.input-estilizado::placeholder {
+  color: #aaa;
+  transition: opacity 0.2s ease;
+}
+
+.input-estilizado:focus::placeholder {
+  opacity: 0; /* Esconde o placeholder ao focar */
+}
+
+.input-estilizado:focus {
+  border-bottom: 2px solid rgba(241, 73, 2, 0.5); /* Cor de destaque */
+  box-shadow: 0 2px 5px rgba(241, 73, 2, 0.5); /* Destaque sutil */
+}
