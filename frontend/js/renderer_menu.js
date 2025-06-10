@@ -4,6 +4,7 @@ import { informacoesUsuario } from "./Firebase/auth-service.js";
 document.addEventListener('DOMContentLoaded', async () => {
   const btnReduzirRuido = document.getElementById('btnReduzirRuido');
   const btnEqualizador = document.getElementById('btnEqualizador');
+  const btnSeparator = document.getElementById('btnSeparator');
   const usuario = document.getElementById("usuario");
 
   const usuarioLogado = await informacoesUsuario();
@@ -29,6 +30,11 @@ document.addEventListener('DOMContentLoaded', async () => {
       window.location.href = 'equalizer.html';
     });
   }
-
+  if (btnSeparator) {
+    btnSeparator.addEventListener('click', () => {
+      // Navega para a página de equalização
+      window.location.href = 'separator.html';
+    });
+  }
 });
 

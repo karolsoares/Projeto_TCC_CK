@@ -23,9 +23,15 @@ app.whenReady().then(createWindow);
 // Handler para abrir diálogo e selecionar arquivo WAV
 ipcMain.handle('selecionar-audio', async () => {
   const result = await dialog.showOpenDialog({
-    filters: [{ name: 'Áudio WAV', extensions: ['wav'] }],
+    filters: [
+      {
+        name: 'Arquivos de Áudio',
+        extensions: ['wav', 'mp3', 'mp4', 'flac', 'ogg', 'm4a', 'aac']
+      }
+    ],
     properties: ['openFile']
   });
+
   if (result.canceled) return null;
   return result.filePaths[0];
 });
@@ -78,6 +84,28 @@ ipcMain.handle('CK/equalizer', async (_, caminhoEntrada, ganhos) => {
         reject(stderr);
       } else {
         resolve(caminhoSaida);
+      }
+    });
+  });
+});
+
+// Handler para chamar o script Python que aplica separação de audio em faixas
+ipcMain.handle('CK/separator', async (_, caminhoEntrada) => {
+  const caminhoPython = path.join(__dirname, '..', '..', 'backend', 'separator.py');
+  const pastaSaida = path.join(__dirname, '..', '..', 'audios', 'saida');
+
+  return new Promise((resolve, reject) => {
+    execFile('python', [caminhoPython, caminhoEntrada, pastaSaida], (error, stdout, stderr) => {
+      console.log('stdout:', stdout);
+      console.log('stderr:', stderr);
+
+      if (error) {
+        console.error('Erro ao executar Python:', stderr);
+        reject(stderr);
+      } else {
+        // Retorna lista de arquivos gerados (exibidos no stdout do Python)
+        const arquivos = stdout.trim().split('\n');
+        resolve(arquivos);
       }
     });
   });
