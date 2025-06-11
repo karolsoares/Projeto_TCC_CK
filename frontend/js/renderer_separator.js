@@ -27,12 +27,12 @@ btnSelecionar.addEventListener('click', async () => {
       return;
     }
 
-    // Cria links para os arquivos de saída
-    //const links = saidas.map(path => {
-    //  const fileUrl = caminhoParaFileUrl(path);
-    //  const nomeArquivo = path.split(/[/\\]/).pop(); // extrai apenas o nome
-    //  return `<li><a href="${fileUrl}" target="_blank">${nomeArquivo}</a></li>`;
-    //}).join('');
+    //Cria links para os arquivos de saída
+    const links = saidas.map(path => {
+      const fileUrl = caminhoParaFileUrl(path);
+      const nomeArquivo = path.split(/[/\\]/).pop(); // extrai apenas o nome
+      return `<li><a href="${fileUrl}" target="_blank">${nomeArquivo}</a></li>`;
+    }).join('');
 
     mostrarStatus(`Processado com sucesso!<br><ul>${links}</ul>`, true);
   } catch (e) {

@@ -23,12 +23,9 @@ def main():
     "Instrumental" :  "saída_instrumental" , 
     } 
 
+
     # Separa as faixas
-    paths_das_faixas = separator.separate(
-        caminho_entrada,
-        output_names
-        
-    )
+    paths_das_faixas = separator.separate(caminho_entrada, output_names)
 
     # Imprime os caminhos absolutos de cada faixa (1 por linha)
     for caminho in paths_das_faixas:
