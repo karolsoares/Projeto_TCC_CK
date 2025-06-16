@@ -5,7 +5,7 @@ contextBridge.exposeInMainWorld('electronAPI', {
   selecionarAudio: () => ipcRenderer.invoke('selecionar-audio'),  // Abre diálogo para escolher áudio
   reduzirRuido: (caminho, intensidade) => ipcRenderer.invoke('CK/reducer', caminho, intensidade), // Passa caminho e intensidade
   aplicarEqualizacao: (caminho, ganhos) => ipcRenderer.invoke('CK/equalizer', caminho, ganhos), //Equalização
-  aplicarSeparacao: (caminho) => ipcRenderer.invoke('CK/separator', caminho), //Separator
+  aplicarSeparacao: (caminho, modelo) => ipcRenderer.invoke('CK/separator', caminho, modelo), //Separator
 });
 
 contextBridge.exposeInMainWorld('env', {

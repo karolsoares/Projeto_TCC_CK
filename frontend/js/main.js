@@ -90,12 +90,14 @@ ipcMain.handle('CK/equalizer', async (_, caminhoEntrada, ganhos) => {
 });
 
 // Handler para chamar o script Python que aplica separação de audio em faixas
-ipcMain.handle('CK/separator', async (_, caminhoEntrada) => {
+ipcMain.handle('CK/separator', async (_, caminhoEntrada, modelo) => {
   const caminhoPython = path.join(__dirname, '..', '..', 'backend', 'separator.py');
   const pastaSaida = path.join(__dirname, '..', '..', 'audios', 'saida');
 
+  const model = modelo;
+
   return new Promise((resolve, reject) => {
-    execFile('python', [caminhoPython, caminhoEntrada, pastaSaida], (error, stdout, stderr) => {
+    execFile('python', [caminhoPython, caminhoEntrada, pastaSaida, model], (error, stdout, stderr) => {
       console.log('stdout:', stdout);
       console.log('stderr:', stderr);
 
