@@ -1,70 +1,64 @@
-// Referências aos elementos da página
 const btnSelecionar = document.getElementById('btnSelecionar');
-const btnVoltar = document.getElementById('btnVoltar');
 const btnProcessar = document.getElementById('btnProcessar');
+const btnVoltar = document.getElementById('btnVoltar');
 const status = document.getElementById('status');
 
-// Atualiza o texto dos valores dos sliders em tempo real
-for(let i = 1; i <= 10; i++) {
-  const slider = document.getElementById(`band${i}`);
-  const label = document.getElementById(`val${i}`);
-  slider.addEventListener('input', () => {
-    label.innerText = slider.value;
-  });
-}
+let caminhoArquivoSelecionado = null;
 
-// Função para transformar caminho Windows em URL file:/// válida
-function caminhoParaFileUrl(caminho) {
-  return 'file:///' + caminho.replace(/\\/g, '/');
-}
-
-let caminhoArquivoSelecionado = null; // Guarda o caminho do arquivo WAV selecionado
-
-// Botão selecionar arquivo WAV
 btnSelecionar.addEventListener('click', async () => {
-  const caminho = await window.electronAPI.selecionarAudio();
-  if (!caminho) {
-    status.innerText = 'Nenhum arquivo selecionado.';
-    caminhoArquivoSelecionado = null;
-    return;
+  try {
+    const caminho = await window.electronAPI.selecionarAudio();
+    if (!caminho) {
+      status.innerText = 'Nenhum arquivo selecionado.';
+      caminhoArquivoSelecionado = null;
+      return;
+    }
+    caminhoArquivoSelecionado = caminho;
+    status.innerText = `Arquivo selecionado: ${caminhoArquivoSelecionado}`;
+  } catch (e) {
+    console.error(e);
+    status.innerText = 'Erro ao selecionar o arquivo.';
   }
-  caminhoArquivoSelecionado = caminho;
-  status.innerText = `Arquivo selecionado: ${caminhoArquivoSelecionado}`;
 });
 
-// Botão processar áudio com equalizador
 btnProcessar.addEventListener('click', async () => {
   if (!caminhoArquivoSelecionado) {
     status.innerText = 'Selecione um arquivo WAV primeiro.';
     return;
   }
 
-  status.innerText = 'Processando áudio, aguarde...';
-
-  // Pega os valores dos ganhos dos sliders em array (string para float)
   const ganhos = [];
-  for(let i = 1; i <= 10; i++) {
-    ganhos.push(parseFloat(document.getElementById(`band${i}`).value));
+  for (let i = 1; i <= 10; i++) {
+    const valor = parseFloat(document.getElementById(`band${i}`).value);
+    if (isNaN(valor)) {
+      status.innerText = `Valor inválido na banda ${i}.`;
+      return;
+    }
+    ganhos.push(valor);
   }
 
+  btnProcessar.disabled = true;
+  status.innerText = 'Processando áudio, aguarde...';
+
   try {
-    // Chama o backend, passando o arquivo de entrada, arquivo de saída e ganhos como string CSV
-    const caminhoSaida = await window.electronAPI.equalizarAudio(
+    const caminhoSaida = await window.electronAPI.aplicarEqualizacao(
       caminhoArquivoSelecionado,
-      ganhos.join(',')
+      ganhos
     );
 
-    // Converte para file URL para link
-    const fileUrl = caminhoParaFileUrl(caminhoSaida);
-
-    status.innerHTML = `Processado com sucesso! <br><a href="${fileUrl}">Abrir arquivo equalizado</a>`;
+    status.innerHTML = `
+      Processado com sucesso!<br>
+      <a href="file:///${caminhoSaida.replace(/\\/g, '/')}" target="_blank">Abrir arquivo equalizado</a><br>
+      <code>${caminhoSaida}</code>
+    `;
   } catch (e) {
-    status.innerText = 'Erro ao processar o áudio.';
     console.error(e);
+    status.innerText = 'Erro ao processar o áudio.';
+  } finally {
+    btnProcessar.disabled = false;
   }
 });
 
-// Botão voltar para menu
 btnVoltar.addEventListener('click', () => {
   window.location.href = 'menu.html';
 });
