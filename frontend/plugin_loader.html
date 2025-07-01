@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CK - Plugins</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>CK - Plugins</h1>
+    <!-- Enviar plugin -->
+    <fieldset style="width: 100%; margin-top: 20px;">
+      <legend>Enviar novo plugin (.py)</legend>
+      <button type="button" id="btnSelecionarPlugin">Selecionar Plugin (.py)</button>
+      <p id="pluginStatus" style="margin-top: 10px;"></p>
+    </fieldset>
+
+    <!-- Formulário principal -->
+    <form id="pluginForm" style="margin-top: 25px;">
+      <fieldset>
+        <legend>Escolha o plugin</legend>
+        <label for="plugin">Plugin:</label><br />
+        <select id="plugin" name="plugin" required>
+          <option value="" disabled selected>-- Selecione um plugin --</option>
+        </select>
+      </fieldset>
+
+      <fieldset style="margin-top: 15px;">
+        <legend>Selecione o arquivo de áudio</legend>
+        <label for="audio">Arquivo (.wav):</label><br />
+        <input type="file" id="audio" name="audio" accept=".wav" required />
+      </fieldset>
+
+      <br />
+      <button type="submit">Processar</button>
+    </form>
+
+    <p id="status" style="margin-top: 10px;"></p>
+
+    <!-- Botão voltar ao menu -->
+    <button id="btnVoltarMenu" type="button">Voltar ao menu</button>
+  </div>
+
+  <script>
+    const btnVoltarMenu = document.getElementById('btnVoltarMenu');
+    const btnSelecionarPlugin = document.getElementById('btnSelecionarPlugin');
+    const pluginStatus = document.getElementById('pluginStatus');
+    const selectPlugin = document.getElementById('plugin');
+    const status = document.getElementById('status');
+
+    btnVoltarMenu.addEventListener('click', () => {
+      window.location.href = 'menu.html';
+    });
+
+    // Selecionar e enviar plugin
+    btnSelecionarPlugin.addEventListener('click', async () => {
+      const result = await window.electronAPI.selecionarPlugin();
+
+      if (!result || result.length === 0) {
+        pluginStatus.style.color = '#f14902';
+        pluginStatus.textContent = 'Nenhum plugin selecionado.';
+        return;
+      }
+
+      const pluginPath = result[0];
+
+      window.electronAPI.enviarPlugin(pluginPath)
+        .then(res => {
+          if (res.sucesso) {
+            pluginStatus.style.color = 'lime';
+            pluginStatus.textContent = `✔ Plugin '${res.nome}' enviado com sucesso!`;
+
+            const nome = res.nome.replace('.py', '');
+            const option = document.createElement('option');
+            option.value = nome;
+            option.textContent = nome;
+            selectPlugin.appendChild(option);
+          } else {
+            pluginStatus.style.color = '#f14902';
+            pluginStatus.textContent = 'Erro: ' + (res.erro || 'Desconhecido');
+          }
+        })
+        .catch(e => {
+          pluginStatus.style.color = '#f14902';
+          pluginStatus.textContent = 'Erro ao enviar plugin: ' + e.message;
+        });
+    });
+
+    // Enviar áudio para processamento
+    document.getElementById('pluginForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const plugin = selectPlugin.value;
+      const audioInput = document.getElementById('audio');
+
+      if (!plugin) {
+        alert('Selecione um plugin.');
+        return;
+      }
+
+      if (audioInput.files.length === 0) {
+        alert('Selecione um arquivo de áudio.');
+        return;
+      }
+
+      const caminhoAudio = audioInput.files[0].path;
+
+      status.textContent = '⏳ Processando...';
+      status.style.color = 'white';
+
+      window.electronAPI.executarPlugin(plugin, caminhoAudio)
+        .then((saida) => {
+          status.style.color = 'lime';
+          status.textContent = `✅ Áudio processado!\nArquivo salvo em:\n${saida}`;
+        })
+        .catch(err => {
+          status.style.color = '#f14902';
+          status.textContent = '❌ Erro ao processar o áudio.';
+          console.error(err);
+        });
+    });
+  </script>
+</body>
+</html>
