@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CK - Menu Principal</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="container">
+    <img src="./assets/icons/logo.ico" alt="Logo" class="logo-central" />
+
+    <div class="grid-menu">
+      <div class="menu-item" id="btnEqualizador">
+        <img src="./assets/icons/icon-equalizer.png" alt="Equalizador" />
+        <span>Equalizador</span>
+      </div>
+
+      <div class="menu-item" id="btnReduzirRuido">
+        <img src="./assets/icons/icon-noise.png" alt="Ruído" />
+        <span>Redução de Ruído</span>
+      </div>
+
+      <div class="menu-item" id="btnSeparator">
+        <img src="./assets/icons/icon-separator.png" alt="Separar" />
+        <span>Separador</span>
+      </div>
+
+      <div class="menu-item" id="btnPlugins">
+        <img src="./assets/icons/icon-plugin.png" alt="Plugins" />
+        <span>Plugins</span>
+      </div>
+    </div>
+
+    <h3 id="usuario"></h3>
+    <button id="logout">Logout</button>
+  </div>
+
+  <script src="./js/renderer_menu.js"></script>
+</body>
+</html>

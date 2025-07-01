@@ -1,0 +1,181 @@
+/* Reset básico e corpo */
+body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #303030;
+  color: white;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px; /* Pequeno padding para evitar encostar nas bordas em telas pequenas */
+}
+
+/* Container comum para centralizar e dar estilo ao conteúdo */
+.container {
+  background-color: #383838;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(241, 73, 2, 0.6);
+  width: 350px;
+  text-align: center;
+  margin: auto;
+
+  /* Para alinhar itens verticalmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  /* Transição para suavizar a mudança de largura */
+  transition: width 0.3s ease;
+}
+
+/* Títulos */
+h1 {
+  color: #f14902;
+  margin-bottom: 40px;
+  user-select: none;
+}
+
+/* Botões padrão */
+button {
+  background-color: #f14902;
+  border: none;
+  padding: 14px 0;
+  width: 100%;
+  font-size: 1.2rem;
+  font-weight: 700;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(241, 73, 2, 0.5);
+  transition: background-color 0.25s ease;
+  user-select: none;
+  margin-bottom: 15px;
+}
+
+/* Efeito hover nos botões */
+button:hover {
+  background-color: #d03a00;
+  box-shadow: 0 6px 18px rgba(208, 58, 0, 0.8);
+}
+
+/* Efeito ao clicar no botão */
+button:active {
+  transform: scale(0.98);
+}
+
+/* Status - mensagem abaixo do botão */
+#status {
+  margin-top: 10px;
+  min-height: 1.2rem;
+  font-size: 1rem;
+  color: #ddd;
+  word-wrap: break-word;
+}
+
+/* Link dentro do status */
+#status a {
+  color: #f14902;
+  text-decoration: none;
+}
+
+#status a:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVIDADE */
+@media (max-width: 400px) {
+  .container {
+    width: 100%; /* Ocupa toda largura disponível com padding do body */
+    padding: 30px 20px;
+    box-shadow: none; /* Remove sombra para melhor performance em mobile */
+  }
+
+  button {
+    font-size: 1rem;
+    padding: 12px 0;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-height: 500px) {
+  body, html {
+    align-items: flex-start; /* Alinha no topo para evitar corte em telas baixas */
+    padding-top: 20px;
+  }
+
+  .container {
+    margin-top: 0;
+  }
+}
+
+/* Container dos sliders */
+.slider-container {
+  width: 100%;
+  margin: 15px 0;
+  text-align: left;
+}
+
+.slider-container label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+/* Área que engloba slider e valor */
+.slider-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+input[type="range"] {
+  flex: 1;
+}
+
+.logo-central {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+}
+
+.grid-menu {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 30px;
+  width: 100%;
+}
+
+.menu-item {
+  background-color: #404040;
+  border-radius: 10px;
+  padding: 20px 10px;
+  text-align: center;
+  cursor: pointer;
+  transition: background-color 0.25s ease, transform 0.2s ease;
+  box-shadow: 0 4px 12px rgba(241, 73, 2, 0.4);
+}
+
+.menu-item img {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 10px;
+}
+
+.menu-item span {
+  display: block;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.menu-item:hover {
+  background-color: #f14902;
+  transform: translateY(-2px);
+}

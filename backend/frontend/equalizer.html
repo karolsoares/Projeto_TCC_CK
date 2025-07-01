@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>CK - Equalizador</title>
+  <link rel="stylesheet" href="style.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+<body>
+  <div class="container">
+    <h1>Equalizador de Áudio</h1>
+
+    <button id="btnSelecionar">Selecionar arquivo WAV</button>
+    <div id="status" style="margin: 15px 0; font-weight: bold;"></div>
+
+    <form id="equalizerForm">
+      <div class="slider-container">
+        <label for="band1">30 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band1" min="-10" max="10" step="1" value="0" />
+          <span id="val1">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band2">60 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band2" min="-10" max="10" step="1" value="0" />
+          <span id="val2">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band3">125 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band3" min="-10" max="10" step="1" value="0" />
+          <span id="val3">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band4">250 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band4" min="-10" max="10" step="1" value="0" />
+          <span id="val4">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band5">500 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band5" min="-10" max="10" step="1" value="0" />
+          <span id="val5">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band6">1.000 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band6" min="-10" max="10" step="1" value="0" />
+          <span id="val6">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band7">2.000 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band7" min="-10" max="10" step="1" value="0" />
+          <span id="val7">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band8">4.000 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band8" min="-10" max="10" step="1" value="0" />
+          <span id="val8">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band9">8.000 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band9" min="-10" max="10" step="1" value="0" />
+          <span id="val9">0</span> dB
+        </div>
+      </div>
+
+      <div class="slider-container">
+        <label for="band10">16.000 Hz</label>
+        <div class="slider-wrapper">
+          <input type="range" id="band10" min="-10" max="10" step="1" value="0" />
+          <span id="val10">0</span> dB
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="btnProcessar">Aplicar Equalização</button>
+        <button type="button" id="btnVoltar">Voltar ao Menu</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="./js/renderer_equalizer.js"></script>
+  <script>
+    for (let i = 1; i <= 10; i++) {
+      const slider = document.getElementById(`band${i}`);
+      const display = document.getElementById(`val${i}`);
+      slider.addEventListener('input', () => {
+        display.textContent = slider.value;
+      });
+    }
+  </script>
+</body>
+</html>
